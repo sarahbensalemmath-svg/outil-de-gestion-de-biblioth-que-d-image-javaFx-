@@ -96,7 +96,7 @@ public class Controller {
     public void handleAppliquerFiltre() {
         Filtre filtre = comboFiltres.getValue();
         if (filtre != null && originalImage != null) {
-            currentImage = filtre.apply(originalImage);
+            currentImage = filtre.apply(currentImage);
             imageView.setImage(currentImage);
         }
     }
