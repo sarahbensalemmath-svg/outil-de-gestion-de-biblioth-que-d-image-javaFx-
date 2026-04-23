@@ -18,11 +18,15 @@ import javafx.scene.control.ComboBox;
 
 public class Controller {
 
+    private Image currentImage;
     @FXML
     private ImageView imageView;
 
     @FXML
     private ComboBox<Filtre> comboFiltres;
+
+    @FXML
+    private ComboBox<Transformation> comboTransformations;
 
     private Image originalImage;
 
@@ -46,6 +50,31 @@ public class Controller {
                 return null;
             }
         });
+        comboTransformations.getItems().addAll(
+                new Rotation(),
+                new Symetrie(true),
+                new Symetrie(false)
+        );
+        comboTransformations.setConverter(new javafx.util.StringConverter<Transformation>() {
+            @Override
+            public String toString(Transformation t) {
+                return t == null ? "" : t.getName();
+            }
+            @Override
+            public Transformation fromString(String s) { return null; }
+        });
+
+        imageView.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                imageView.fitWidthProperty().bind(newScene.widthProperty());
+                imageView.fitHeightProperty().bind(newScene.heightProperty().subtract(60));
+            }
+        });imageView.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                imageView.fitWidthProperty().bind(newScene.widthProperty());
+                imageView.fitHeightProperty().bind(newScene.heightProperty().subtract(60));
+            }
+        });
     }
 
     @FXML
@@ -59,14 +88,16 @@ public class Controller {
         if (selectedFile != null) {
             originalImage = new Image(selectedFile.toURI().toString());
             imageView.setImage(originalImage);
-        }p
+        }
+        currentImage = originalImage;
     }
 
     @FXML
     public void handleAppliquerFiltre() {
         Filtre filtre = comboFiltres.getValue();
         if (filtre != null && originalImage != null) {
-            imageView.setImage(filtre.apply(originalImage));
+            currentImage = filtre.apply(originalImage);
+            imageView.setImage(currentImage);
         }
     }
 
@@ -74,6 +105,15 @@ public class Controller {
     public void handleReinitialiser() {
         if (originalImage != null) {
             imageView.setImage(originalImage);
+        }
+    }
+
+    @FXML
+    public void handleAppliquerTransformation() {
+        Transformation t = comboTransformations.getValue();
+        if (t != null && originalImage != null) {
+            currentImage = t.apply(currentImage);
+            imageView.setImage(currentImage);
         }
     }
 }

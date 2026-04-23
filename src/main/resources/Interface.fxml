@@ -4,18 +4,37 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.Controller">
+            fx:controller="org.example.Controller"
+            stylesheets="@/style.css">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
-            <Button text="Choisir une image" onAction="#handleLoadImage"/>
-            <ComboBox fx:id="comboFiltres" promptText="Choisir un filtre"/>
-            <Button text="Appliquer" onAction="#handleAppliquerFiltre"/>
-            <Button text="Réinitialiser" onAction="#handleReinitialiser"/>
+            <Button onAction="#handleLoadImage">
+                <graphic><FontIcon iconLiteral="fas-folder-open" iconSize="18" iconColor="#b5ead7"/></graphic>
+                <text>Ouvrir</text>
+            </Button>
+            <ComboBox fx:id="comboFiltres" promptText="Filtre"/>
+            <Button onAction="#handleAppliquerFiltre">
+                <graphic><FontIcon iconLiteral="fas-magic" iconSize="18" iconColor="#c9b1ff"/></graphic>
+                <text>Appliquer filtre</text>
+            </Button>
+            <ComboBox fx:id="comboTransformations" promptText="Transformation"/>
+            <Button onAction="#handleAppliquerTransformation">
+                <graphic><FontIcon iconLiteral="fas-sync" iconSize="18" iconColor="#ffdac1"/></graphic>
+                <text>Appliquer transformation</text>
+            </Button>
+            <Button onAction="#handleReinitialiser">
+                <graphic><FontIcon iconLiteral="fas-undo" iconSize="18" iconColor="#ff9aa2"/></graphic>
+                <text>Réinitialiser</text>
+            </Button>
         </HBox>
     </top>
     <center>
-        <ImageView fx:id="imageView" fitWidth="680" fitHeight="440" preserveRatio="true"/>
+        <StackPane style="-fx-alignment: center;">
+            <ImageView fx:id="imageView" preserveRatio="true"/>
+        </StackPane>
     </center>
 </BorderPane>

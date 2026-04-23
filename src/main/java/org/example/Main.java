@@ -14,6 +14,7 @@ public class Main extends Application {
         stage.setTitle("Outil de gestion d'images");
         stage.setScene(scene);
         stage.show();
+        stage.setMaximized(true);
     }
 
     public static void main(String[] args) {
