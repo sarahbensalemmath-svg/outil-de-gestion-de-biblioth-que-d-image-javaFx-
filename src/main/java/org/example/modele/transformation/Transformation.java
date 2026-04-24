@@ -1,8 +1,8 @@
-package org.example.filtre;
+package org.example.modele.transformation;
 
 import javafx.scene.image.Image;
 
-public interface Filtre{
+public interface Transformation {
     Image apply(Image image);
     String getName();
 }

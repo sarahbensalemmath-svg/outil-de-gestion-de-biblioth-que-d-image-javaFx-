@@ -1,10 +1,9 @@
-package org.example.filtre;
+package org.example.modele.filtre;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
 
 public abstract class AbstractFiltre implements Filtre {
 

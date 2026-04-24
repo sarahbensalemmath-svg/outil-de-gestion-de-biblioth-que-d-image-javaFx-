@@ -1,4 +1,4 @@
-package org.example.filtre;
+package org.example.modele.filtre;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;

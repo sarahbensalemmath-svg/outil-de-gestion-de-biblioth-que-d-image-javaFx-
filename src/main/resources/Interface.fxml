@@ -8,11 +8,11 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.Controller"
+            fx:controller="org.example.controleur.InterfaceControleur"
             stylesheets="@/style.css">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
-            <Button onAction="#handleLoadImage">
+            <Button onAction="#handleChargerImage">
                 <graphic><FontIcon iconLiteral="fas-folder-open" iconSize="18" iconColor="#b5ead7"/></graphic>
                 <text>Ouvrir</text>
             </Button>
