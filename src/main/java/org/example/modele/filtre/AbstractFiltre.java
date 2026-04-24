@@ -5,6 +5,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
+//implemente l'interface filtre
 public abstract class AbstractFiltre implements Filtre {
 
     // Méthode utilitaire commune à tous les filtres
