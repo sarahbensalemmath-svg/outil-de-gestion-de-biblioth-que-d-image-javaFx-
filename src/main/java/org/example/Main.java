@@ -10,14 +10,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //chargement du fichier fxml qui définit l'interface graphique
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/Interface.fxml")
         );
 
-        Scene scene = new Scene(loader.load(), 700, 500);
+        //création de la scene à partir du fichier fxml
+        Scene scene = new Scene(loader.load());
 
+        //titre  de la fenetre et démarrage de la scène
         stage.setTitle("Outil de gestion d'une bibliothèque d'images");
         stage.setScene(scene);
+
         //le plein écran au démarrage
         stage.setMaximized(true);
         stage.show();

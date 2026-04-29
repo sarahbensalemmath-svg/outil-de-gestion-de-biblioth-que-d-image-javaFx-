@@ -6,17 +6,17 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+//la classe hérite de AbstractFiltre
+
 public class FiltreSepia extends AbstractFiltre {
 
     @Override
-    public Image apply(Image image) {
-        int width = (int) image.getWidth();
-        int height = (int) image.getHeight();
+    public Image apply(Image image) {//méthode qui applique le filtre
 
-        WritableImage result = createOutputImage(image);
-        PixelReader reader = getReader(image);
-        PixelWriter writer = getWriter(result);
+        // initialise width, height, result, reader et writer
+        init(image);
 
+        //on parcours et récupère sles composantes RGB
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Color color = reader.getColor(x, y);
@@ -30,6 +30,8 @@ public class FiltreSepia extends AbstractFiltre {
                 double newG = Math.min(r * 0.349 + g * 0.686 + b * 0.168, 1.0);
                 double newB = Math.min(r * 0.272 + g * 0.534 + b * 0.131, 1.0);
 
+
+                //on écrit la nouvelle couleur tout en conservant l'opacité originale
                 writer.setColor(x, y, new Color(newR, newG, newB, color.getOpacity()));
             }
         }
