@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controleur.InterfaceControleur"
+            stylesheets="@/style.css">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Button onAction="#handleChargerImage">
+                <graphic><FontIcon iconLiteral="fas-folder-open" iconSize="18" iconColor="#b5ead7"/></graphic>
+                <text>Ouvrir</text>
+            </Button>
+            <ComboBox fx:id="comboFiltres" promptText="Filtre"/>
+            <Button onAction="#handleAppliquerFiltre">
+                <graphic><FontIcon iconLiteral="fas-magic" iconSize="18" iconColor="#c9b1ff"/></graphic>
+                <text>Appliquer filtre</text>
+            </Button>
+            <ComboBox fx:id="comboTransformations" promptText="Transformation"/>
+            <Button onAction="#handleAppliquerTransformation">
+                <graphic><FontIcon iconLiteral="fas-sync" iconSize="18" iconColor="#ffdac1"/></graphic>
+                <text>Appliquer transformation</text>
+            </Button>
+            <Button onAction="#handleReinitialiser">
+                <graphic><FontIcon iconLiteral="fas-undo" iconSize="18" iconColor="#ff9aa2"/></graphic>
+                <text>Réinitialiser</text>
+            </Button>
+            <Button onAction="#handleCrypter">
+                <graphic><FontIcon iconLiteral="fas-lock" iconSize="18" iconColor="#f9c74f"/></graphic>
+                <text>Chiffrer</text>
+            </Button>
+            <Button onAction="#handleDecrypter">
+                <graphic><FontIcon iconLiteral="fas-lock-open" iconSize="18" iconColor="#90be6d"/></graphic>
+                <text>Déchiffrer</text>
+            </Button>
+            <Button onAction="#handleEnregistrer">
+                <graphic><FontIcon iconLiteral="fas-save" iconSize="18" iconColor="#a8dadc"/></graphic>
+                <text>Enregistrer</text>
+            </Button>
+        </HBox>
+    </top>
+    
+    <center>
+        <StackPane style="-fx-alignment: center; -fx-background-color: #121212;"
+                   minWidth="400" minHeight="400">
+            <ImageView fx:id="imageView" preserveRatio="true"/>
+        </StackPane>
+    </center>
+
+    <!-- Panneau tags : slot "right" du BorderPane, toujours visible dès le démarrage -->
+    <right>
+        <VBox spacing="8" minWidth="240" maxWidth="240"
+              style="-fx-padding: 12; -fx-background-color: #1e1e1e;
+                     -fx-border-color: #333333; -fx-border-width: 0 0 0 1;">
+
+            <Label text="Tags de l'image"
+                   style="-fx-text-fill: #b5ead7; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+
+            <HBox spacing="5">
+                <TextField fx:id="champTag" promptText="Nouveau tag..."
+                           HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #2d2d2d; -fx-text-fill: white;
+                                  -fx-border-color: #444; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+                <Button onAction="#handleAjouterTag" text="Ajouter"/>
+            </HBox>
+
+            <ListView fx:id="listeTags" prefHeight="150" minHeight="80"
+                      style="-fx-background-color: #2d2d2d; -fx-border-color: #444;"/>
+
+            <Button onAction="#handleSupprimerTag"
+                    text="Supprimer le tag sélectionné"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #3a2020; -fx-text-fill: #ff9aa2;
+                           -fx-border-color: #5a3030; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+
+            <Separator/>
+
+            <Label text="Rechercher par tag"
+                   style="-fx-text-fill: #c9b1ff; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+
+            <HBox spacing="5">
+                <TextField fx:id="champRecherche" promptText="Tag à chercher..."
+                           HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #2d2d2d; -fx-text-fill: white;
+                                  -fx-border-color: #444; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+                <Button onAction="#handleRechercherParTag" text="OK"/>
+            </HBox>
+
+            <ListView fx:id="listeResultats" prefHeight="180" minHeight="120"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-background-color: #2d2d2d; -fx-border-color: #444;"/>
+
+            <Label text="Cliquez sur un résultat pour charger l'image"
+                   style="-fx-text-fill: #555; -fx-font-size: 11px; -fx-wrap-text: true;"/>
+        </VBox>
+    </right>
+
+</BorderPane>
