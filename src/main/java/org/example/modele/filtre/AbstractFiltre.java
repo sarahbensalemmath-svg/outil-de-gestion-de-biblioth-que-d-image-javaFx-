@@ -50,7 +50,7 @@ public abstract class AbstractFiltre implements Filtre {
         // lecteur de pixels de l'image originale
         reader = getReader(image);
 
-        // écrivain de pixels pour l'image résultat
+        // ça ecrit les pixels pour l'image résultat
         writer = getWriter(result);
     }
 }

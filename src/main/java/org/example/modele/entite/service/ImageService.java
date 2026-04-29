@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import org.example.modele.entite.ImageModele;
 import org.example.modele.filtre.Filtre;
 import org.example.modele.securite.CrypterImage;
+import org.example.modele.securite.Decrypter;
 import org.example.modele.transformation.Transformation;
 import javafx.embed.swing.SwingFXUtils;
 import javax.imageio.ImageIO;
@@ -39,8 +40,8 @@ public class ImageService {
 
     public Image dechiffrer(String motDePasse) throws Exception {
         CrypterImage crypter = new CrypterImage();
-        Image result = crypter.dechiffrer(modele.getImageCourante(), motDePasse);
-        modele.setImageCourante(result);
+        Decrypter decrypter = new Decrypter();
+        Image result = decrypter.decrypter(modele.getImageCourante(), motDePasse);        modele.setImageCourante(result);
         return result;
     }
 

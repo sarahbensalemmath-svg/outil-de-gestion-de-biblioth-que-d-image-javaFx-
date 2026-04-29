@@ -1,31 +1,41 @@
 package org.example.modele.transformation;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class Rotation implements Transformation {
+
+ // Transformation : rotation 90° horaire de l'image
+//la classe hérite de AbstractTransformation
+public class Rotation extends AbstractTransformation {
+
+
+     // La rotation va  échanger largeur et hauteur
+    @Override
+    protected int getNewWidth(int width, int height) {
+        return height;
+    }
 
     @Override
-    public Image apply(Image image) {
-        int width = (int) image.getWidth();
-        int height = (int) image.getHeight();
+    protected int getNewHeight(int width, int height) {
+        return width;
+    }
 
-        // Après rotation 90° : largeur et hauteur sont inversées
-        WritableImage result = new WritableImage(height, width);
-        PixelReader reader = image.getPixelReader();
-        PixelWriter writer = result.getPixelWriter();
+    @Override
+    protected void process(PixelReader reader, PixelWriter writer,
+                           int width, int height) {
 
+        // Parcours de chaque pixel de l'image initiale
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
+
+                // Couleur du pixel actuel
                 Color color = reader.getColor(x, y);
-                // Rotation 90° dans le sens horaire
+
+                // (x, y) devient (height - 1 - y, x)
                 writer.setColor(height - 1 - y, x, color);
             }
         }
-        return result;
     }
 
     @Override
